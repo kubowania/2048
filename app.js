@@ -194,13 +194,13 @@ document.addEventListener('DOMContentLoaded', () =>  {
 
   //check if there are no zeros on the board to lose
   function checkForGameOver() {
-    let zeros = []
+    let zeros = 0
     for (let i=0; i < squares.length; i++) {
       if (squares[i].innerHTML == 0) {
         zeros++
       }
     }
-    if (zeros.length === 0) {
+    if (zeros === 0) {
       resultDisplay.innerHTML = 'You LOSE'
       document.removeEventListener('keyup', control)
     }
