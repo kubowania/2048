@@ -10,7 +10,6 @@ document.addEventListener('DOMContentLoaded', () =>  {
   function createBoard() {
     for (let i=0; i < width*width; i++) {
       square = document.createElement('div')
-      square.setAttribute('id', i)
       square.innerHTML = 0
       gridDisplay.appendChild(square)
       squares.push(square)
