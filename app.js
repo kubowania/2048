@@ -187,6 +187,7 @@ document.addEventListener('DOMContentLoaded', () =>  {
       if (squares[i].innerHTML == 2048) {
         resultDisplay.innerHTML = 'You WIN'
         document.removeEventListener('keyup', control)
+        clearInterval(myTimer)
       }
     }
   }
@@ -202,7 +203,30 @@ document.addEventListener('DOMContentLoaded', () =>  {
     if (zeros === 0) {
       resultDisplay.innerHTML = 'You LOSE'
       document.removeEventListener('keyup', control)
+      clearInterval(myTimer)
     }
   }
+
+
+  //add colours
+  function addColours() {
+    for (let i=0; i < squares.length; i++) {
+      if (squares[i].innerHTML == 0) squares[i].style.backgroundColor = '#afa192'
+      else if (squares[i].innerHTML == 2) squares[i].style.backgroundColor = '#eee4da'
+      else if (squares[i].innerHTML  == 4) squares[i].style.backgroundColor = '#ede0c8' 
+      else if (squares[i].innerHTML  == 8) squares[i].style.backgroundColor = '#f2b179' 
+      else if (squares[i].innerHTML  == 16) squares[i].style.backgroundColor = '#ffcea4' 
+      else if (squares[i].innerHTML  == 32) squares[i].style.backgroundColor = '#e8c064' 
+      else if (squares[i].innerHTML == 64) squares[i].style.backgroundColor = '#ffab6e' 
+      else if (squares[i].innerHTML == 128) squares[i].style.backgroundColor = '#fd9982' 
+      else if (squares[i].innerHTML == 256) squares[i].style.backgroundColor = '#ead79c' 
+      else if (squares[i].innerHTML == 512) squares[i].style.backgroundColor = '#76daff' 
+      else if (squares[i].innerHTML == 1024) squares[i].style.backgroundColor = '#beeaa5' 
+      else if (squares[i].innerHTML == 2048) squares[i].style.backgroundColor = '#d7d4f0' 
+    }
+}
+addColours()
+
+var myTimer = setInterval(addColours, 50);
 
 })
