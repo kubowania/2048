@@ -187,7 +187,7 @@ document.addEventListener('DOMContentLoaded', () =>  {
       if (squares[i].innerHTML == 2048) {
         resultDisplay.innerHTML = 'You WIN'
         document.removeEventListener('keyup', control)
-        clearInterval(myTimer)
+        setTimeout(() => clear(), 3000)
       }
     }
   }
@@ -203,8 +203,13 @@ document.addEventListener('DOMContentLoaded', () =>  {
     if (zeros === 0) {
       resultDisplay.innerHTML = 'You LOSE'
       document.removeEventListener('keyup', control)
-      clearInterval(myTimer)
+      setTimeout(() => clear(), 3000)
     }
+  }
+
+  //clear timer
+  function clear() {
+    clearInterval(myTimer)
   }
 
 
