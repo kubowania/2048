@@ -21,11 +21,13 @@ document.addEventListener('DOMContentLoaded', () =>  {
 
   //generate a new number
   function generate() {
-    randomNumber = Math.floor(Math.random() * squares.length)
-    if (squares[randomNumber].innerHTML == 0) {
-      squares[randomNumber].innerHTML = 2
-      checkForGameOver()
-    } else generate()
+    if(squares.map(i => Number(i.textContent)).includes(0)){
+      randomNumber = Math.floor(Math.random() * squares.length)
+      if (squares[randomNumber].innerHTML == 0) {
+        squares[randomNumber].innerHTML = 2
+        checkForGameOver()
+      } else generate()
+    }    
   }
 
   function moveRight() {
