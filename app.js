@@ -193,14 +193,23 @@ document.addEventListener('DOMContentLoaded', () =>  {
   }
 
   //check if there are no zeros on the board to lose
-  function checkForGameOver() {
-    let zeros = 0
-    for (let i=0; i < squares.length; i++) {
-      if (squares[i].innerHTML == 0) {
-        zeros++
+  function checkForGameOver() {   
+    let gameOver = false;
+    //combineRow check
+    for (let i =0; i < 15; i++) {
+      if (squares[i].innerHTML === squares[i +1].innerHTML) {
+        gameOver = true;
       }
     }
-    if (zeros === 0) {
+
+    //combineColumn check
+    for (let i =0; i < 12; i++) {
+      if (squares[i].innerHTML === squares[i +width].innerHTML) {
+        gameOver = true;
+      }
+    }
+    
+    if (!gameOver) {
       resultDisplay.innerHTML = 'You LOSE'
       document.removeEventListener('keyup', control)
       setTimeout(() => clear(), 3000)
