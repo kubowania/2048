@@ -21,11 +21,13 @@ document.addEventListener('DOMContentLoaded', () =>  {
 
   //generate a new number
   function generate() {
-    randomNumber = Math.floor(Math.random() * squares.length)
-    if (squares[randomNumber].innerHTML == 0) {
-      squares[randomNumber].innerHTML = 2
-      checkForGameOver()
-    } else generate()
+    if(squares.map(i => Number(i.textContent)).includes(0)){
+      randomNumber = Math.floor(Math.random() * squares.length)
+      if (squares[randomNumber].innerHTML == 0) {
+        squares[randomNumber].innerHTML = 2
+        checkForGameOver()
+      } else generate()
+    }    
   }
 
   function moveRight() {
@@ -193,14 +195,32 @@ document.addEventListener('DOMContentLoaded', () =>  {
   }
 
   //check if there are no zeros on the board to lose
-  function checkForGameOver() {
-    let zeros = 0
+  function checkForGameOver() {   
+    let zeros = 0;
+    let gameOver = true;
+    
     for (let i=0; i < squares.length; i++) {
       if (squares[i].innerHTML == 0) {
         zeros++
       }
     }
-    if (zeros === 0) {
+
+
+    //combineRow check
+    for (let i =0; i < 15; i++) {
+      if (squares[i].innerHTML === squares[i +1].innerHTML) {
+        gameOver = false;
+      }
+    }
+
+    //combineColumn check
+    for (let i =0; i < 12; i++) {
+      if (squares[i].innerHTML === squares[i +width].innerHTML) {
+        gameOver = false;
+      }
+    }
+    
+    if (gameOver && zeros === 0) {
       resultDisplay.innerHTML = 'You LOSE'
       document.removeEventListener('keyup', control)
       setTimeout(() => clear(), 3000)
